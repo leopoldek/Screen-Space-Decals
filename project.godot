@@ -11,13 +11,8 @@ config_version=3
 [application]
 
 config/name="Screen Space Decals"
-run/main_scene="res://Node.tscn"
 config/icon="res://icon.png"
 
 [editor_plugins]
 
 enabled=PoolStringArray( "decals" )
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"
