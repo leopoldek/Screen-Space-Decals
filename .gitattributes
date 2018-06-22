@@ -4,5 +4,4 @@
 # This makes installing through the AssetLib easier, because no files and folders
 # need to be unchecked.
 
-*               export-ignore
 !addons/decals/ export-ignore
