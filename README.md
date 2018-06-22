@@ -1,6 +1,8 @@
 # Screen-Space-Decals
 Realtime screen-space decals for Godot 3.x
 
+![Screen Space Decal](https://raw.githubusercontent.com/Mr-Slurpy/Screen-Space-Decals/master/icon.png)
+
 ## Animated Decals
 
 Eventually I may add built-in support for animations but for now you have two ways of doing it:
