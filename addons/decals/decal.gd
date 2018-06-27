@@ -5,6 +5,7 @@ export(Texture) var decal setget set_decal
 export(Vector2) var uv_offset = Vector2() setget set_uv_offset
 export(Vector2) var uv_scale = Vector2(1, 1) setget set_uv_scale
 export(bool) var emulate_lighting = true setget set_emulate_lighting
+export(float, -100.0, 100.0) var brightness = 0.0 setget set_brightness
 
 func _init():
 	mesh = CubeMesh.new()
@@ -26,3 +27,7 @@ func set_emulate_lighting(new_value):
 	emulate_lighting = new_value
 	if emulate_lighting: mesh.material.set_shader_param("emulate_lighting", 1)
 	else: mesh.material.set_shader_param("emulate_lighting", 0)
+
+func set_brightness(new_brightness):
+	brightness = new_brightness
+	mesh.material.set_shader_param("brightness", brightness * 0.01)
