@@ -25,8 +25,7 @@ func set_uv_scale(new_scale):
 
 func set_emulate_lighting(new_value):
 	emulate_lighting = new_value
-	if emulate_lighting: mesh.material.set_shader_param("emulate_lighting", 1)
-	else: mesh.material.set_shader_param("emulate_lighting", 0)
+	mesh.material.set_shader_param("emulate_lighting", emulate_lighting)
 
 func set_brightness(new_brightness):
 	brightness = new_brightness

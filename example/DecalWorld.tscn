@@ -219,7 +219,7 @@ environment = SubResource( 4 )
 
 [node name="Decal" type="MeshInstance" parent="." index="4"]
 
-transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 4, 2.53944, 0, 1.42837 )
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 1.42837 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -238,7 +238,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 decal = ExtResource( 4 )
-uv_offset = Vector2( 0, 0 )
+uv_offset = Vector2( 0, 0.13242 )
 uv_scale = Vector2( 1, 1 )
 emulate_lighting = true
 brightness = -5.0
