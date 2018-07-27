@@ -12,6 +12,5 @@ Eventually I may add built-in support for animations but for now you have two wa
 
 ## Known Limitations
 
- - If the camera is inside the decal bounding box, the decal will not render.
  - The decal will render from behind as well. (I may fix this at some point)
  - The decal doesn't actually interact with light, instead it gets the luminosity of the background and does its best to blend in. In practice I haven't had any problems with this yet. If you don't need/want lighting you can turn it off.

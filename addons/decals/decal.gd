@@ -1,6 +1,8 @@
 tool
 extends MeshInstance
 
+const SHADER = preload("decal.shader")
+
 export(Texture) var decal setget set_decal
 export(Vector2) var uv_offset = Vector2() setget set_uv_offset
 export(Vector2) var uv_scale = Vector2(1, 1) setget set_uv_scale
@@ -9,7 +11,8 @@ export(float, -100.0, 100.0) var brightness = 0.0 setget set_brightness
 
 func _init():
 	mesh = CubeMesh.new()
-	mesh.material = preload("decal.material")
+	mesh.material = ShaderMaterial.new()
+	mesh.material.shader = SHADER
 
 func set_decal(new_decal):
 	decal = new_decal

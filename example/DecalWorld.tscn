@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://addons/decals/decal.material" type="Material" id=1]
-[ext_resource path="res://addons/decals/decal.gd" type="Script" id=2]
-[ext_resource path="res://addons/decals/icon_decal.svg" type="Texture" id=3]
-[ext_resource path="res://example/decal.png" type="Texture" id=4]
+[ext_resource path="res://addons/decals/decal.shader" type="Shader" id=1]
+[ext_resource path="res://example/decal.png" type="Texture" id=2]
+[ext_resource path="res://addons/decals/decal.gd" type="Script" id=3]
+[ext_resource path="res://addons/decals/icon_decal.svg" type="Texture" id=4]
 
 [sub_resource type="SphereMesh" id=1]
 
@@ -121,18 +121,27 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Background" ]
 
-[sub_resource type="CubeMesh" id=7]
+[sub_resource type="ShaderMaterial" id=5]
 
-material = ExtResource( 1 )
+render_priority = 0
+shader = ExtResource( 1 )
+shader_param/offset = Vector2( 0, 0 )
+shader_param/scale = Vector2( 1, 1 )
+shader_param/emulate_lighting = true
+shader_param/brightness = -0.05
+shader_param/decal = ExtResource( 2 )
+
+[sub_resource type="CubeMesh" id=6]
+
+material = SubResource( 5 )
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector3( 2, 2, 2 )
 subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 
-resource_name = "DecalMove"
 length = 10.0
 loop = true
 step = 0.1
@@ -199,7 +208,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Camera" type="Camera" parent="." index="2"]
 
-transform = Transform( 0.896832, 0.108206, -0.428933, 0, 0.969623, 0.244604, 0.442371, -0.219369, 0.869589, -2.95389, 1.4142, 5.05288 )
+transform = Transform( 0.902578, 0, -0.430526, 0, 1, 0, 0.430526, 0, 0.902578, -2.95389, 0, 5.05288 )
 keep_aspect = 1
 cull_mask = 1048575
 environment = null
@@ -212,6 +221,7 @@ fov = 70.0
 size = 1.0
 near = 0.05
 far = 100.0
+_sections_unfolded = [ "Transform" ]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="3"]
 
@@ -219,7 +229,7 @@ environment = SubResource( 4 )
 
 [node name="Decal" type="MeshInstance" parent="." index="4"]
 
-transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 1.42837 )
+transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 4, 2.70855, 0, 1.42837 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -229,16 +239,16 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 7 )
+mesh = SubResource( 6 )
 skeleton = NodePath("..")
 material/0 = null
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
-"_editor_icon": ExtResource( 3 )
+"_editor_icon": ExtResource( 4 )
 }
-decal = ExtResource( 4 )
-uv_offset = Vector2( 0, 0.13242 )
+decal = ExtResource( 2 )
+uv_offset = Vector2( 0, 0 )
 uv_scale = Vector2( 1, 1 )
 emulate_lighting = true
 brightness = -5.0
@@ -246,11 +256,11 @@ brightness = -5.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
 
 root_node = NodePath("..")
-autoplay = ""
+autoplay = "DecalMove"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/DecalMove = SubResource( 6 )
+anims/DecalMove = SubResource( 7 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
