@@ -16,15 +16,16 @@ void fragment(){
 	bool inside = all(greaterThanEqual(pos.xyz, vec3(-1.0))) && all(lessThanEqual(pos.xyz, vec3(1.0)));
 	
 	if(inside){
-		vec3 color = texture(decal, (pos.xy * -0.5 - 0.5) * scale + offset).rgb;
+		vec4 color = texture(decal, (pos.xy * -0.5 - 0.5) * scale + offset);
 		if(emulate_lighting){
 			float lum = dot(textureLod(SCREEN_TEXTURE, SCREEN_UV, 0).rgb, vec3(0.2125, 0.7154, 0.0721));
 			lum += brightness;
 			lum = clamp(lum, 0.0, 1.0);
-			ALBEDO = color * lum;
+			ALBEDO = color.rgb * lum;
 		}else{
-			ALBEDO = color;
+			ALBEDO = color.rgb;
 		}
+		ALPHA = color.a;
 	}else{
 		discard;
 	}
