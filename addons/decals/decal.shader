@@ -7,9 +7,15 @@ uniform vec2 scale;
 uniform bool emulate_lighting;
 uniform float brightness;
 
+varying flat mat4 model_view_matrix;
+
+void vertex(){
+	model_view_matrix = MODELVIEW_MATRIX;
+}
+
 void fragment(){
 	//float zdepth = textureLod(DEPTH_TEXTURE, SCREEN_UV, 0.0).r * 2.0 - 1.0;
-	vec4 pos = inverse(WORLD_MATRIX) * inverse(INV_CAMERA_MATRIX) * INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, textureLod(DEPTH_TEXTURE, SCREEN_UV, 0.0).r * 2.0 - 1.0, 1.0);
+	vec4 pos = inverse(model_view_matrix) * INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, textureLod(DEPTH_TEXTURE, SCREEN_UV, 0.0).r * 2.0 - 1.0, 1.0);
 	
 	pos.xyz /= pos.w;
 	

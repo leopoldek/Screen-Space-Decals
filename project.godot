@@ -11,7 +11,12 @@ config_version=3
 [application]
 
 config/name="Screen Space Decals"
+run/main_scene="res://example/DecalWorld.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/vsync/use_vsync=false
 
 [editor_plugins]
 
